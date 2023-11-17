@@ -5,15 +5,15 @@ import VideoPlayer from "../components/VideoPlayer";
 import { media } from "../utils/constants";
 
 type VideoProps = {
-  description: string;
+  description?: string;
   sources: string[];
-  subtitle: string;
-  thumb: string;
+  subtitle?: string;
+  thumb?: string;
   title: string;
-}[];
+};
 
 export default function Home() {
-  const [currentVideo, setCurrentVideo] = useState<VideoProps>([]);
+  const [currentVideo, setCurrentVideo] = useState<VideoProps | {}>({});
   const [playlist, setPlaylist] = useState<VideoProps[]>([]);
 
   useEffect(() => {
