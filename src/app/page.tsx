@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Playlist from "../components/Playlist";
@@ -22,8 +24,8 @@ export default function Home() {
     setCurrentVideo(media[0]);
   }, []);
 
-  const handleVideoSelect = (videoUrl) => {
-    setCurrentVideo(videoUrl);
+  const handleVideoSelect = (video) => {
+    setCurrentVideo(video);
   };
 
   const handleAddUrl = (description, source, subtitle, thumb, title) => {
@@ -43,7 +45,11 @@ export default function Home() {
         <VideoPlayer currentVideo={currentVideo} />
       </div>
       <div className="z-10 max-w-4xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <Playlist onVideoSelect={handleVideoSelect} onAddUrl={handleAddUrl} />
+        <Playlist
+          videos={playlist}
+          onVideoSelect={handleVideoSelect}
+          onAddUrl={handleAddUrl}
+        />
       </div>
     </main>
   );
