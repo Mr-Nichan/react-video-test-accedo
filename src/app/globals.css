@@ -25,3 +25,72 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+  padding-top: 50px;
+  overflow-y: hidden;
+  gap: 10px;
+}
+
+.video-player {
+  display: flex;
+  max-height: 600px;
+}
+
+.playlist {
+  overflow-y: auto;
+}
+
+/* For Webkit browsers like Chrome and Safari */
+.playlist::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.playlist::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(255,255,255,0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,0.5);
+}
+
+/* For Firefox */
+.playlist {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.5) black;
+}
+
+/* For Internet Explorer 10+ */
+.playlist {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.playlist-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.playlist-thumbnail {
+  flex-shrink: 0;
+  width: 120px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.playlist-details {
+  flex-grow: 1;
+}
+
+.video-title {
+  font-size: 1.2em;
+}
+
+.video-subtitle {
+  font-size: 0.9em;
+  color: #666;
+}

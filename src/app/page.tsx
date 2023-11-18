@@ -40,17 +40,13 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-row items-center justify-between p-24">
-      <div className="z-10 max-w-8xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <VideoPlayer currentVideo={currentVideo} />
-      </div>
-      <div className="z-10 max-w-4xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <Playlist
-          videos={playlist}
-          onVideoSelect={handleVideoSelect}
-          onAddUrl={handleAddUrl}
-        />
-      </div>
+    <main className="main-container">
+      <VideoPlayer currentVideo={currentVideo} />
+      <Playlist
+        videos={playlist}
+        onVideoSelect={handleVideoSelect}
+        onAddUrl={handleAddUrl}
+      />
     </main>
   );
 }

@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, VideoHTMLAttributes } from "react";
 
 const VideoPlayer = ({ currentVideo }) => {
-  const videoRef = useRef(null);
+  const videoRef = useRef<VideoHTMLAttributes | null>(null);
   const [videoUrl, setVideoUrl] = useState<string>("");
 
   useEffect(() => {
@@ -19,7 +19,13 @@ const VideoPlayer = ({ currentVideo }) => {
 
   return (
     <div className="video-player">
-      <video ref={videoRef} width="100%" controls={true}>
+      <video
+        ref={videoRef}
+        width="100%"
+        height="100%"
+        controls
+        preload="metadata"
+      >
         <source src={videoUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
