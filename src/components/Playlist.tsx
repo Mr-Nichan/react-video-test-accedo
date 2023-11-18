@@ -1,5 +1,23 @@
 import React from "react";
 
-export default function Playlist() {
-  return <div>Playlist</div>;
-}
+const Playlist = ({ videos, onVideoSelect, onAddUrl }) => {
+  if (!videos || videos.length === 0) {
+    return <div>No videos in the playlist</div>;
+  }
+
+  return (
+    <div className="playlist">
+      {videos.map((video, index) => (
+        <div
+          key={index}
+          className="playlist-item"
+          onClick={() => onVideoSelect(video)}
+        >
+          <div className="video-title">{video.title}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Playlist;
