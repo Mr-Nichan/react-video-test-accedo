@@ -15,8 +15,9 @@ type VideoProps = {
 };
 
 export default function Home() {
-  const [currentVideo, setCurrentVideo] = useState<VideoProps | {}>({});
+  const [currentVideo, setCurrentVideo] = useState<VideoProps | null>(null);
   const [playlist, setPlaylist] = useState<VideoProps[]>([]);
+  const [playingIndex, setPlayingIndex] = useState<number>(0);
 
   useEffect(() => {
     if (media && media.length === 0) return;
@@ -24,28 +25,62 @@ export default function Home() {
     setCurrentVideo(media[0]);
   }, []);
 
-  const handleVideoSelect = (video) => {
+  const handleVideoSelect = (video: VideoProps, index: number): void => {
+    setPlayingIndex(index);
     setCurrentVideo(video);
   };
 
-  const handleAddUrl = (description, source, subtitle, thumb, title) => {
+  const handleNextVideo = () => {
+    const nextIndex = playingIndex + 1;
+    if (nextIndex < playlist.length) {
+      setPlayingIndex(nextIndex);
+      setCurrentVideo(playlist[nextIndex]);
+    }
+  };
+
+  const handlePreviousVideo = () => {
+    const previousIndex = playingIndex - 1;
+    if (previousIndex >= 0) {
+      setPlayingIndex(previousIndex);
+      setCurrentVideo(playlist[previousIndex]);
+    }
+  };
+
+  const handleAddVideo = (
+    source: string,
+    title: string,
+    subtitle?: string
+  ): void => {
     const newVideo = {
-      description,
+      description: "",
       sources: [source],
       subtitle,
-      thumb,
+      thumb: "",
       title,
     };
     setPlaylist([...playlist, newVideo]);
   };
 
+  const handleRemoveVideo = (index: number): void => {
+    const newPlaylist = [...playlist];
+    newPlaylist.splice(index, 1);
+    setPlaylist(newPlaylist);
+  };
+
   return (
     <main className="main-container">
-      <VideoPlayer currentVideo={currentVideo} />
+      <VideoPlayer
+        currentVideo={currentVideo}
+        toggleNext={handleNextVideo}
+        togglePrevious={handlePreviousVideo}
+      />
       <Playlist
         videos={playlist}
         onVideoSelect={handleVideoSelect}
-        onAddUrl={handleAddUrl}
+        onAddVideo={handleAddVideo}
+        onRemoveVideo={handleRemoveVideo}
+        currentlyPlaying={playingIndex}
+        setCurrentlyPlaying={setPlayingIndex}
       />
     </main>
   );
