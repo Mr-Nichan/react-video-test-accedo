@@ -37,12 +37,33 @@ body {
 }
 
 .video-player {
+  position: relative;
+  height: 600px;
+  width: 60vi;
+}
+
+.video-controls {
+  /* position: absolute; */
+  margin-top: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
   display: flex;
-  max-height: 600px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.video-button:focus {
+  outline: none;
 }
 
 .playlist {
-  overflow-y: auto;
+  overflow-y: auto; 
 }
 
 /* For Webkit browsers like Chrome and Safari */
@@ -75,6 +96,10 @@ body {
   margin-bottom: 10px;
 }
 
+.playing {
+  background-color:#333;
+}
+
 .playlist-thumbnail {
   flex-shrink: 0;
   width: 120px;
@@ -87,10 +112,73 @@ body {
 }
 
 .video-title {
-  font-size: 1.2em;
+  color: #aaa;
+  font-size: 1em;
+  margin-right: 100px;
+}
+
+.video-title-playing {
+  color: #fff;
+  font-weight: 700;
 }
 
 .video-subtitle {
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #666;
 }
+
+.playlist-remove-button {
+  margin-right: 10px;
+}
+
+.add-video-form-container {
+  width: 350px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  color: #333;
+}
+
+.close-modal-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 10px
+}
+
+.close-modal-button:hover {
+  background-color: #b30000;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 10px
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
